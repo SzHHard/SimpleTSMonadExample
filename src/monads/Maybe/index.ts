@@ -1,9 +1,6 @@
 import { Maybe } from "./interface";
 
-
-
 export function Some<T>(value: T): Maybe<T> {
-
     return {
         _tag: 'Some',
         value,
@@ -13,7 +10,6 @@ export function Some<T>(value: T): Maybe<T> {
 }
 
 export function None<T>(): Maybe<T> {
-
     return {
         _tag: 'None',
         value: null,

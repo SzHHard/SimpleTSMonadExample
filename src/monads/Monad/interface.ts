@@ -1,15 +1,9 @@
-export interface Monad<T> {
-    flatMap: <R>(f: (value: T) => Monad<R>) => Monad<R>
-    map: <R>(f: (value: T) => R) => Monad<R>
+interface FlatMappable<F extends Monad<any>, A> {
+    flatMap(fn: (value: A) => F): F;
+}
+
+export interface Monad<A> extends FlatMappable<Monad<A>, A> {
+    map: <B>(f: (value: A) => B) => Monad<B>
 }
 
 
-// export interface HKT<F, A> { // Higher kinded type for extending Monad behavior
-//     readonly _URI: F;
-//     readonly _A: A;
-// }
-
-// export interface Monad<T, ConcreteModanicWrapper> {
-//     flatMap: <R>(f: (value: T) => HKT<ConcreteModanicWrapper, R>) => HKT<ConcreteModanicWrapper, R>
-//     // map: <R>(f: (value: T) => R) => Monad<R>
-// }

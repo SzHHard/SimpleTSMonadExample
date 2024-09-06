@@ -1,8 +1,10 @@
 import { Monad } from "../Monad/interface"
 
-export interface Maybe<T> extends Monad<T, Maybe<T>> {
+export interface Maybe<A> extends Monad<A> {
     _tag: 'None' | 'Some'
-    value: T | null,
-    flatMap: <R>(f: (value: T) => Maybe<R>) => Maybe<R>
-    map: <R>(f: (value: T) => R) => Maybe<R>
+    value: A | null,
+    flatMap: <B>(f: (value: A) => Maybe<B>) => Maybe<B>
+    map: <B>(f: (value: A) => B) => Maybe<B>
 }
+
+

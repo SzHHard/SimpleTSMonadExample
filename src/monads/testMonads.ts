@@ -9,18 +9,28 @@ export const testMonads = () => {
         return devisor === 0 ? None() : Some(devident / devisor)
     }
 
-    describe('describe block', () => {
+    describe('Check monadic laws', () => {
+        const f = (val: number) => Some(val * 2)
+
         it('should follow left-identity', () => {
-            assert.equal(Some(1).flatMap(val => Some(val * 2)).value, Some(1 * 2).value)
+            const start = 1
+            assert.equal(Some(start).flatMap(f).value, Some(start * 2).value)
+        })
+        it('should follow right-identity', () => {
+            const start = 2
+            assert.equal(Some(start).flatMap(f).value, Some(start * 2).value)
+        })
+        it('should be assosiative', () => {
+
+            const first = Some(3).flatMap(val => (Some(val + 2).flatMap(f))).value
+            const second = Some(3).flatMap(val => Some(val + 2)).flatMap(f).value
+            assert.equal(first, second)
         })
     })
-    console.log('test1 left-identity: ', Some(1).flatMap(val => Some(val * 2)) === Some(1 * 2))
-    console.log('test2 right-identity: ', Some(2).flatMap(val => Some(val)) === Some(2))
-    console.log('test3 associativity: ', Some(3).flatMap(val => (Some(val + 2).flatMap(val => Some(val * 2)))) === Some(3).flatMap(val => Some(val + 2)).flatMap(val => Some(val * 2)))
 
-    // console.log(Some(3).flatMap(res => Some(res + 2)).map(res => res * 2))
-    // console.log(Some(3).map(res => res + 2).flatMap(res => Some(res * 2)))
-    console.log(divide(10, 0).flatMap(res => Some(String(res))))
+
+
+    console.log(divide(10, 0).flatMap(res => Some(String(res))).value)
 }
 
 
