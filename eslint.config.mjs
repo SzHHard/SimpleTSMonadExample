@@ -9,10 +9,4 @@ export default [
   pluginJs.configs.recommended,
   eslintPluginPrettierRecommended,
   ...tseslint.configs.recommended,
-
-  // {
-  //     rules: {
-  //         indent: "error",
-  //     },
-  // },
 ]
