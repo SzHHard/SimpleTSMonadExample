@@ -1,5 +1,11 @@
 import { Monad2 } from '../Monad/MonadHKT2/interface'
 
+declare module '../Monad/MonadHKT2/interface' {
+  interface URItoKind2<A, B> {
+    Either: Either<A, B>
+  }
+}
+
 export abstract class Either<A, B> implements Monad2<'Either', A, B> {
   protected readonly value: A | B
 

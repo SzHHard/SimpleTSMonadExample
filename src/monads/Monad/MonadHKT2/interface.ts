@@ -1,8 +1,3 @@
-import { Either } from '../../Either'
-
-interface URItoKind2<A, B> {
-  Either: Either<A, B>
-}
 type URIS2 = keyof URItoKind2<unknown, unknown>
 type Kind2<F extends URIS2, A, B> = URItoKind2<A, B>[F]
 
