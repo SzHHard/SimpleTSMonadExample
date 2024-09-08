@@ -1,7 +1,8 @@
 import { describe, it } from "node:test"
 
 import assert from "node:assert"
-import { None, Maybe, Some } from "./Monad/MonadHKT1/interface"
+import { Maybe, None, Some } from "./Maybe"
+
 
 
 export const testMonads = () => {
@@ -29,8 +30,8 @@ export const testMonads = () => {
     })
 
 
-    console.log(divide(10, 0).flatMap(res => new Some(String(res))).get())
-    console.log(divide(10, 2).flatMap(res => new Some(String(res))).get())
+    console.log(divide(10, 0).flatMap(res => new Some(String(res)).flatMap(res => new Some(res + 'abc'))).get())
+    console.log(divide(10, 2).flatMap(res => new Some(String(res)).flatMap(res => new Some(res + 'abc'))).get())
 }
 
 

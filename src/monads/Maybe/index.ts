@@ -1,21 +1,64 @@
-// import { Maybe } from "./interface";
+import { Monad1 } from "../Monad/MonadHKT1/interface"
 
-// export function Some<T>(value: T): Maybe<T> {
-//     return {
-//         _tag: 'Some',
-//         value,
-//         flatMap: f => f(value),
-//         map: f => Some(f(value))
-//     };
-// }
+export abstract class Maybe<A> implements Monad1<'Maybe', A> {
+    abstract get(): A | null
+    abstract getOrDefault(defaultValue: A): A
+    abstract flatMap<B>(f: (a: A) => Maybe<B>): Maybe<B>;
+    abstract isSome(): boolean
 
-// export function None<T>(): Maybe<T> {
-//     return {
-//         _tag: 'None',
-//         value: null,
-//         flatMap: f => None(),
-//         map: f => None()
-//     };
-// }
+    static of<I>(value: I): Maybe<I> {
+        if (typeof value !== 'undefined' && value !== null) {
+            return new Some<I>(value)
+        }
+        return new None()
+    }
+
+
+}
+
+export class Some<A> extends Maybe<A> {
+    private readonly value: A
+
+    constructor(value: A) {
+        super()
+        this.value = value
+    }
+
+    isSome() {
+        return true
+    }
+    get() {
+        return this.value
+    }
+    getOrDefault() {
+        return this.value
+    }
+    flatMap<B>(f: (a: A) => Maybe<B>): Maybe<B> {
+        return f(this.value)
+    }
+
+}
+
+export class None<A> extends Maybe<A> {
+
+    constructor() {
+        super()
+
+    }
+    isSome(): boolean {
+        return false
+    }
+    get(): null {
+        return null
+    }
+    getOrDefault(defaultValue: A) {
+        return defaultValue
+    }
+    flatMap<B>(): Maybe<B> {
+        return new None()
+    }
+}
+
+
 
 
