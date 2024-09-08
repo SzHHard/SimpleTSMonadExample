@@ -12,8 +12,6 @@ export abstract class Maybe<A> implements Monad1<'Maybe', A> {
         }
         return new None()
     }
-
-
 }
 
 export class Some<A> extends Maybe<A> {
@@ -36,7 +34,6 @@ export class Some<A> extends Maybe<A> {
     flatMap<B>(f: (a: A) => Maybe<B>): Maybe<B> {
         return f(this.value)
     }
-
 }
 
 export class None<A> extends Maybe<A> {
