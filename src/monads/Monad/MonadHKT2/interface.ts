@@ -5,8 +5,7 @@
 
 // interface Monad2<M extends URIS2, A, B> {
 //     flatMap: <C>(f: (a: A) => URItoKind2<C>[M]) => URItoKind2<C>[M];
-// } 
-
+// }
 
 // interface Either<A, B> extends Monad<'Either', A, B> {
 
