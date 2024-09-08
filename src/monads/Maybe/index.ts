@@ -18,6 +18,7 @@ export class Some<A> extends Maybe<A> {
   private readonly value: A
 
   constructor(value: A) {
+    // TODO: try private constructor with direct call to Some() instead of new Some(). When attempt - don't forget to bind the context when assigning Some() call
     super()
     this.value = value
   }

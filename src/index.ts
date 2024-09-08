@@ -1,7 +1,8 @@
 import http from 'http'
-import { testMonads } from './monads/testMonads'
+import { testMaybe } from './monads/Maybe/testMaybe'
+import { testEither } from './monads/Either/testEither'
 
 http.createServer(function () {}).listen()
-////////
 
-testMonads()
+testMaybe()
+testEither()

@@ -1,14 +1,14 @@
 import { describe, it } from 'node:test'
 
 import assert from 'node:assert'
-import { Maybe, None, Some } from './Maybe'
+import { Maybe, None, Some } from '.'
 
-export const testMonads = () => {
+export const testMaybe = () => {
   function divide(devident: number, devisor: number): Maybe<number> {
     return devisor === 0 ? new None() : new Some(devident / devisor)
   }
 
-  describe('Check monadic laws', () => {
+  describe('Test Option', () => {
     const f = (val: number) => new Some(val * 2)
 
     it('should follow left-identity', () => {

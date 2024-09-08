@@ -2,6 +2,7 @@ import { Maybe } from '../../Maybe'
 
 interface URItoKind1<A> {
   // simple HKT
+
   Maybe: Maybe<A>
 }
 type URIS1 = keyof URItoKind1<unknown>
