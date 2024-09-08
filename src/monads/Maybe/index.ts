@@ -1,5 +1,11 @@
 import { Monad1 } from '../Monad/MonadHKT1/interface'
 
+declare module '../Monad/MonadHKT1/interface' {
+  interface URItoKind1<A> {
+    Maybe: Maybe<A>
+  }
+}
+
 export abstract class Maybe<A> implements Monad1<'Maybe', A> {
   abstract get(): A | null
   abstract getOrDefault(defaultValue: A): A
